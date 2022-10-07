@@ -7,4 +7,3 @@ a remote server.
 I am not responsible for the misuse of this code, this is for educational
 and entertainment purposes only.
 
-Written in python by canyon bishop.
