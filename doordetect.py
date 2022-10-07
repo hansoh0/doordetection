@@ -61,23 +61,8 @@ def backitup():
 
 def remotebackup():
 	#!!! NEEDS SSH KEY GEN ON SOURCE DOWNLOADED TO DEST
-	## prolly need ip check or static ip
+	## static ip works best
 	subprocess.run(["scp", "doorlog.txt", "host@server:PATH"])
-
-### class weekdaywatch:
-#	def __init__(self,weekdayALP):
-#		weekdaynum = (datetime.datetime.now().weekday())
-#		weekdaysdict = { 0:"Monday",1:"Tuesday",2:"Wednesday",3:"Thursday",4:
-#		"Friday",5:"Saturday",6:"Sunday"}
-#		weekdayALP = (weekdaysdict[weekdaynum])
-#	@property
-#	def WD(self):
-#		return self._WD
-
-#	@WD.setter
-#	def WD2(): 
-
-
 
 def main():
 	header()
