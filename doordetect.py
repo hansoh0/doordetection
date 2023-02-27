@@ -59,8 +59,7 @@ def backitup():
 	else:
 		continue
 
-def remotebackup():
-	#!!! NEEDS SSH KEY GEN ON SOURCE DOWNLOADED TO DEST
+def remotebackup(): 
 	## static ip works best
 	subprocess.run(["scp", "doorlog.txt", "host@server:PATH"])
 
