@@ -17,6 +17,7 @@ host_server:~$ pip install -r server_require.txt
 ```
 ## How to Use
 Both processes should be started on bootup, this can be done by creating a service for each of the respective scripts and enabling them
+### Client
 ```
 client_server:~$ sudo vi /etc/systemd/system/door_detection.service
 ```
@@ -36,6 +37,7 @@ client_server:~$ sudo systemctl daemon-reload
 client_server:~$ sudo systemctl enable door_detection.service
 client_server:~$ sudo systemctl start door_detection.service
 ```
+### Host
 ```
 host_server:~$ sudo vi /etc/systemd/system/door_detection.service
 ```
