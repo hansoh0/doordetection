@@ -1,10 +1,61 @@
-This is a work in progress.
 
-A python script utilizing a raspberry pi zero and reed switch to log the 
-open/closed status of a door to a log file; the file is then uploaded to
-a remote server.
+# doordetection
 
-Please note: An SSH key must be exchanged prior to execution.
+Client/server app where client notifies the server of the status of a door (open/closed) and captures video footage for 8 seconds depending on the status created by @hansoh0 (https://www.github.com/hansoh0)
 
-I am not responsible for the misuse of this code, this is for educational
-and entertainment purposes only.
+
+## Installation
+
+Install requirements with pip
+
+```
+client_server:~$ pip install -r client_require.txt
+```
+
+```
+host_server:~$ pip install -r server_require.txt
+```
+## How to Use
+Both processes should be started on bootup, this can be done by creating a service for each of the respective scripts and enabling them
+```
+client_server:~$ sudo vi /etc/systemd/system/door_detection.service
+```
+```
+[Unit]                                                                                                                                        
+Description=Door detection script (client side)
+After=networking.target
+                
+[Service]               
+User=client                
+ExecStart=/usr/bin/python3 /home/client/app/client.py                                                                                                                                                           
+[Install]                
+WantedBy=multi-user.target
+```
+```
+client_server:~$ sudo systemctl daemon-reload
+client_server:~$ sudo systemctl enable door_detection.service
+client_server:~$ sudo systemctl start door_detection.service
+```
+```
+host_server:~$ sudo vi /etc/systemd/system/door_detection.service
+```
+```
+[Unit]                                                                                                                                        
+Description=Door detection script (server side)
+After=networking.target
+                
+[Service]               
+User=client                
+ExecStart=/usr/bin/python3 /home/host/app/server.py                                                                                                                                                           
+[Install]                
+WantedBy=multi-user.target
+```
+```
+host_server:~$ sudo systemctl daemon-reload
+host_server:~$ sudo systemctl enable door_detection.service
+host_server:~$ sudo systemctl start door_detection.service
+```
+This will not work if the reed switch is not connected to port 40 on the raspberry pi or unless you change the port mapping within the client.py file.
+
+RPIZ GPIO Map: (https://github.com/hansoh0/doordetection/assets/48212912/1b718b2f-521c-4daa-b838-8339ba4e10ef)
+
