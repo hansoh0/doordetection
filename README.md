@@ -28,7 +28,8 @@ After=networking.target
                 
 [Service]               
 User=client                
-ExecStart=/usr/bin/python3 /home/client/app/client.py                                                                                                                                                           
+ExecStart=/usr/bin/python3 /home/client/app/client.py
+                                                                                                                                                           
 [Install]                
 WantedBy=multi-user.target
 ```
@@ -48,7 +49,8 @@ After=networking.target
                 
 [Service]               
 User=client                
-ExecStart=/usr/bin/python3 /home/host/app/server.py                                                                                                                                                           
+ExecStart=/usr/bin/python3 /home/host/app/server.py
+                                                                                                                                                        
 [Install]                
 WantedBy=multi-user.target
 ```
@@ -57,7 +59,7 @@ host_server:~$ sudo systemctl daemon-reload
 host_server:~$ sudo systemctl enable door_detection.service
 host_server:~$ sudo systemctl start door_detection.service
 ```
-This will not work if the reed switch is not connected to port 40 on the raspberry pi or unless you change the port mapping within the client.py file.
+This will not work if the reed switch is not connected to pin 40 on the raspberry pi or unless you change the pin mapping within the client.py file.
 
 RPIZ GPIO Map: (https://github.com/hansoh0/doordetection/assets/48212912/1b718b2f-521c-4daa-b838-8339ba4e10ef)
 
